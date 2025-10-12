@@ -10,7 +10,7 @@ let [ , , method, resource, ...params] = process.argv;
 //console.log(params);
 
 if (!method || !resource) {
-    console.log('Envie os parâmetros corretamente');
+    console.log('Envíe los parámetros correctamente');
     process.exit(1);
 }
 
@@ -44,3 +44,24 @@ fetch('https://fakestoreapi.com/products', {
   .then(response => response.json())
   .then(data => console.log(data));
 };
+
+//Extra, no se pide en los requerimientos, pero lo agregué para probar el PUT
+
+if(method === 'PUT' && resource === 'products/' + id) {
+const product = { title, price, category };
+fetch('https://fakestoreapi.com/products/' + id, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(product)
+})
+  .then(response => response.json())
+  .then(data => console.log(data));
+}
+
+if(method === 'DELETE' && resource === 'products/' + id) {
+    fetch('https://fakestoreapi.com/products/' + id, {
+  method: 'DELETE'
+})
+  .then(response => response.json())
+  .then(data => console.log("Producto eliminado correctamente.", data));
+}
