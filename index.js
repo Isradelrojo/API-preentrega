@@ -16,8 +16,7 @@ if (!method || !resource) {
 
 method = method.toUpperCase();
 resource = resource.toLowerCase();
-const id = resource.slice('9');
-
+const id = resource.split('/')[1];
 
 
 if (method === 'GET' && resource === 'products') {
